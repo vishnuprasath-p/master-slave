@@ -11,6 +11,7 @@ pipeline {
             DOCKER_PASS = 'Dockerci'
             IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+            JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
     }
     stages{
         stage("Cleanup Workspace"){
@@ -62,7 +63,7 @@ pipeline {
     stage("Trigger CD Pipeline") {
             steps {
                 script {
-                    sh "curl -v -k --user clouduser:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-13-48-13-211.eu-north-1.compute.amazonaws.com:8080/job/pipeline/buildWithParameters?token=gitops-token'"
+                    sh "curl -v -k --user Vishnuprasath:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-13-48-13-211.eu-north-1.compute.amazonaws.com:8080/job/pipeline/buildWithParameters?token=gitops-token'"
                 }
             }
     }
