@@ -5,7 +5,7 @@ pipeline {
         maven 'Maven3'
     }
     environment {
-	        APP_NAME = "register-app-pipeline"
+	    APP_NAME = "register-app-pipeline"
             RELEASE = "1.0.0"
             DOCKER_USER = "vishnu010194"
             DOCKER_PASS = 'Dockerci'
@@ -63,7 +63,7 @@ pipeline {
     stage("Trigger CD Pipeline") {
             steps {
                 script {
-                    sh "curl -v -k --user Vishnuprasath:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-13-48-13-211.eu-north-1.compute.amazonaws.com:8080/job/pipeline/buildWithParameters?token=gitops-token'"
+                    sh "curl -v -k --user Vishnuprasath:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-13-48-13-211.eu-north-1.compute.amazonaws.com:8080/job/pipeline/buildWithParameters?token=gitops_token'"
                 }
             }
     }
